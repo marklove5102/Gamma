@@ -738,6 +738,17 @@ public:
 	float upU();		///< Unipolar upward ramp
 	float up2U();		///< Unipolar upward ramp2
 
+	/// Complex sinusoid
+	template <class Complex>
+	Complex csin(){
+		static_assert(sizeof(Complex)/sizeof(typename Complex::value_type) >= 2, "Complex type must have at least two elements");
+		auto p = nextPhase();
+		return {
+			scl::sinFast(p + uint32_t(1073741824)),
+			scl::sinFast(p)
+		};
+	}
+
 	float patU();
 	float patU(uint32_t mul);
 	float sineT9();
