@@ -13,6 +13,7 @@ uint32_t bits(const char * string){
 }
 
 uint32_t bitsToUInt(const char * bits){
+	if(!bits || !bits[0]) return 0;
 	uint32_t i=0, r=0;
 	for(; bits[i] && i<32; ++i) r |= ((bits[i]=='1'?1:0) << (31-i));
 	return r>>(32-i);
