@@ -77,17 +77,17 @@
 		auto v = sampleTo<float>(char(i));
 		auto j = sampleTo<char>(v);
 		//printf("%d -> %g -> %d\n", i,v,j);
-		assert(("char-float roundtrip", j==i));
+		assert(j==i && "char-float roundtrip");
 	}
 	for(int i=-127; i<=127; ++i){
 		auto v = sampleTo<short>(char(i));
 		auto j = sampleTo<char>(v);
 		//printf("%d -> %d -> %d\n", i,v,j);
-		assert(("char-short roundtrip", j==i));
+		assert(j==i && "char-short roundtrip");
 	}
 	for(int i=-32767; i<=32767; ++i){
 		auto v = sampleTo<float>(short(i));
 		auto j = sampleTo<short>(v);
-		assert(("short-float roundtrip", j==i));
+		assert(j==i && "short-float roundtrip");
 	}
 }
