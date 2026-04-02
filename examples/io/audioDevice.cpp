@@ -64,7 +64,7 @@ int main(){
 	int outputChannels = 2;			// how many output channels to open
 	int inputChannels = 1;			// how many input channels to open
 	UserData user = {-0.5, 0.5};	// external data to be passed into callback
-	
+
 	// create an audio i/o object using default input and output devices
 	gam::AudioIO io(blockSize, sampleRate, audioCB, &user, outputChannels, inputChannels);
 
@@ -85,17 +85,17 @@ int main(){
 		printf("This example needs at least 1 input channel to start streaming. Exiting...\n");
 		return 0;
 	}
-	
+
 	// set the global sample rate "subject"
 	//gam::sampleRate(io.framesPerSecond());
-	
+
 	// start the audio stream
 	io.start();
-	
+
 	// print some information about the i/o streams
 	printf("Audio stream info:\n");
 	io.print();
-	
+
 	printf("\nPress 'enter' to quit...\n"); getchar();
 	return 0;
 }

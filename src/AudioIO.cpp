@@ -88,7 +88,7 @@ AudioDevice::AudioDevice(const std::string& nameKeyword, StreamMode stream){
 
 AudioDevice::~AudioDevice(){}
 
-bool AudioDevice::valid() const { return 0!=mImpl; }
+bool AudioDevice::valid() const { return mImpl && mID>=0; }
 int AudioDevice::id() const { return mID; }
 const char * AudioDevice::name() const { return mName; }
 int AudioDevice::channelsInMax() const { return mChanIMax; }
@@ -100,12 +100,14 @@ bool AudioDevice::hasOutput() const { return channelsOutMax()>0; }
 void AudioDevice::setImpl(int deviceNum){
 	initDevices();
 	auto * info = Pa_GetDeviceInfo(deviceNum);
-	mName = info->name;
-	mChanIMax = info->maxInputChannels;
-	mChanOMax = info->maxOutputChannels;
-	mDefSampleRate = info->defaultSampleRate;
-	mImpl = info;
-	mID = deviceNum;
+	if(info){
+		mName = info->name;
+		mChanIMax = info->maxInputChannels;
+		mChanOMax = info->maxOutputChannels;
+		mDefSampleRate = info->defaultSampleRate;
+		mImpl = info;
+		mID = deviceNum;
+	}
 }
 
 /*static*/ AudioDevice AudioDevice::defaultInput(){
