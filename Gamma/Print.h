@@ -59,7 +59,7 @@ public:
 	PrintSignal& print(unsigned N, const OnSample& onSample){
 		for(unsigned i=0; i<N; ++i){
 			auto v = onSample(i);
-			printf("[%2d] % 6.4f ", i, v);
+			printf("[%2d] % 6.4f ", i, float(v));
 			printPlot(v, mWidth, mSpaces, mSign, mPoint);
 			printf("\n");
 		}
